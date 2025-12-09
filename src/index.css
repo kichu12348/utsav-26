@@ -1,0 +1,52 @@
+:root {
+
+  /* Primary Theyyam Colors */
+  --theyyam-red: #C53725;
+  --theyyam-orange: #E65622;
+  --theyyam-gold: #FFB347;
+
+  /* Dark Ritual Base */
+  --obsidian: #0B0A0A;
+  --temple-charcoal: #1A1818;
+  --burnt-maroon: #3A1A17;
+
+  /* Supporting Accents */
+  --leaf-shadow: #4F5B2A;
+  --ash-brown: #7A5442;
+
+  /* Neutrals for Typography & UI */
+  --sand-text: #E1C7A0;
+  --bone: #F3E8D2;
+  --ember-gray: #A07E6A;
+
+  /* Shadows / Glow */
+  --shadow-strong: rgba(0, 0, 0, 0.6);
+  --shadow-soft: rgba(0, 0, 0, 0.3);
+  --glow-orange: rgba(230, 86, 34, 0.5);
+
+  /* ===============================
+     🅵  FONTS
+  ================================== */
+
+  /* Display / Ritual Headings */
+  --font-display: 'Cinzel', serif;
+
+  /* Body / UI */
+  --font-body: 'Inter', sans-serif;
+
+  /* Accent / Quotes / Small ritual text */
+  --font-accent: 'Cormorant Garamond', serif;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--obsidian);
+  color: var(--sand-text);
+  line-height: 1.6;
+}

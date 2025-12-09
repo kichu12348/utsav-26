@@ -2,7 +2,7 @@
   position: relative;
   height: 100vh;
   width: 100%;
-  background-image: url("/utsav_bg.png");
+  background-image: url("/utsav_bg.webp");
   background-size: cover;
   background-position: center;
   display: flex;

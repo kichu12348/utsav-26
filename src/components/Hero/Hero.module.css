@@ -63,8 +63,8 @@
   border-radius: 100% 0;
   transform: rotate(45deg);
   z-index: 2; /* above overlay */
-  background: #ffb400;
-  box-shadow: 0 0 15px #ffb400, 0 0 30px #ffb400, 0 0 45px #ffb400;
+  background: #ffb400aa;
+  box-shadow: 0 0 15px #ffb400cc, 0 0 30px #ffb400cc, 0 0 45px #ffb400cc;
   opacity: 0; /* Animated in JS */
 }
 

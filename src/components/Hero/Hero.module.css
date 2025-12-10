@@ -55,8 +55,63 @@
   transform-style: preserve-3d;
 }
 
-@media (max-width: 768px) {
+.eyeLeft,
+.eyeRight {
+  position: absolute;
+  width: 4%; /* relative size to scale with bg */
+  aspect-ratio: 1/1;
+  border-radius: 100% 0;
+  transform: rotate(45deg);
+  z-index: 2; /* above overlay */
+  background: #ffb400;
+  box-shadow: 0 0 15px #ffb400, 0 0 30px #ffb400, 0 0 45px #ffb400;
+  opacity: 1; /* Animated in JS */
+}
+
+/* POSITIONING — adjust these % to match your background */
+.eyeLeft {
+  top: 49.5%;
+  transform: rotateZ(48deg);
+  left: 40%;
+}
+
+.eyeRight {
+  top: 49.5%;
+  left: 56%;
+}
+
+@media screen and (max-width: 768px) {
   .title {
     font-size: 4rem;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .eyeLeft,
+  .eyeRight {
+    width: 4.5%;
+  }
+
+  .eyeLeft {
+    left: 39.5%;
+  }
+
+  .eyeRight {
+    left: 55%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .eyeLeft,
+  .eyeRight {
+    width: 7%;
+  }
+
+  .eyeLeft {
+    left: 32.5%;
+  }
+
+  .eyeRight {
+    left: 60.5%;
   }
 }

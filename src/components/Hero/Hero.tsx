@@ -44,6 +44,34 @@ function Hero() {
         yoyo: true,
         repeat: -1,
       });
+
+      // Eyes Animation - Glow once then vanish
+      const eyes = containerRef.current?.querySelectorAll(
+        `.${styles.eyeLeft}, .${styles.eyeRight}`
+      );
+      if (eyes && eyes.length > 0) {
+        const eyeTl = gsap.timeline({ delay: 0.5 });
+
+        eyeTl
+          .to(eyes, {
+            opacity: 0.3,
+            duration: 2,
+            ease: "power2.out",
+          })
+          .to(eyes, {
+            opacity: 0.6,
+            scale: 1,
+            duration: 0.5,
+            ease: "power2.inOut",
+          })
+          .to(eyes, {
+            opacity: 0,
+            scale: 0.8,
+            duration: 1,
+            ease: "power2.in",
+            delay: 0.2,
+          });
+      }
     },
     { scope: containerRef }
   );
@@ -52,6 +80,8 @@ function Hero() {
 
   return (
     <section className={styles.hero} ref={containerRef}>
+      <div className={styles.eyeLeft}></div>
+      <div className={styles.eyeRight}></div>
       <div className={styles.overlay}></div>
       <div className={styles.content}>
         <h1 className={styles.title} ref={titleRef}>

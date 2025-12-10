@@ -65,7 +65,7 @@
   z-index: 2; /* above overlay */
   background: #ffb400;
   box-shadow: 0 0 15px #ffb400, 0 0 30px #ffb400, 0 0 45px #ffb400;
-  opacity: 1; /* Animated in JS */
+  opacity: 0; /* Animated in JS */
 }
 
 /* POSITIONING — adjust these % to match your background */

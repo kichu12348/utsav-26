@@ -1,0 +1,41 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  background: var(--obsidian);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.eyesContainer {
+  display: flex;
+  gap: 6rem;
+  opacity: 0; /* Controlled by GSAP */
+}
+
+.eyeSvg {
+  width: 160px;
+  height: 100px;
+  overflow: visible;
+}
+
+.eyeShape {
+  fill: var(--theyyam-red);
+  stroke: var(--theyyam-red);
+  stroke-width: 3px;
+  /* Start with a deep, ominous glow */
+  filter: drop-shadow(0 0 15px var(--theyyam-red));
+  transform-origin: center;
+  vector-effect: non-scaling-stroke;
+}
+
+@media (max-width: 768px) {
+  .eyesContainer {
+    gap: 3rem;
+  }
+  .eyeSvg {
+    width: 100px;
+    height: 60px;
+  }
+}

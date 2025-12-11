@@ -1,0 +1,239 @@
+.housesSection {
+  background: var(--obsidian);
+  position: relative;
+  overflow: hidden;
+  padding: 8rem 0;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      90deg,
+      rgba(197, 55, 37, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(180deg, rgba(197, 55, 37, 0.08) 1px, transparent 1px);
+  background-size: 120px 120px;
+  opacity: 1;
+}
+
+.ornamentsTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  width: 100vw;
+  background: linear-gradient(to bottom,var(--obsidian),transparent);
+  pointer-events: none;
+}
+
+.ornamentsBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: radial-gradient(
+    ellipse 800px 200px at 50% 100%,
+    rgba(197, 55, 37, 0.08),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 0 4rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.titleContainer {
+  margin-bottom: 6rem;
+  text-align: left;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  color: var(--theyyam-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-bottom: 1rem;
+}
+
+.titleLine {
+  width: 200px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--theyyam-red) 0%,
+    var(--theyyam-orange) 50%,
+    var(--theyyam-gold) 100%
+  );
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  grid-auto-rows: 350px;
+}
+
+.house {
+  position: relative;
+  background: rgba(26, 24, 24, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+}
+
+.houseBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, var(--house-color) 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.house:hover .houseBg {
+  opacity: 0.08;
+}
+
+.house::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, var(--house-color), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+}
+
+.house:hover::before {
+  opacity: 0.1;
+}
+
+.house:hover {
+  transform: translateY(-6px);
+  border-color: var(--house-color);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), 0 0 30px var(--house-color);
+}
+
+.houseInner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  z-index: 1;
+}
+
+.iconWrapper {
+  font-size: 6rem;
+  color: var(--house-color);
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 20px var(--house-color));
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.house:hover .iconWrapper {
+  transform: scale(1.15) rotate(-8deg);
+  filter: drop-shadow(0 0 40px var(--house-color));
+}
+
+.houseName {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--sand-text);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+  transition: all 0.3s ease;
+}
+
+.house:hover .houseName {
+  color: var(--house-color);
+  letter-spacing: 0.2em;
+}
+
+.houseDesc {
+  font-family: var(--font-accent);
+  font-size: 0.95rem;
+  color: var(--ember-gray);
+  text-transform: lowercase;
+  letter-spacing: 0.25em;
+  opacity: 0.5;
+}
+
+.houseNumber {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--house-color);
+  opacity: 0.12;
+  font-weight: 700;
+  line-height: 1;
+  z-index: 0;
+  transition: all 0.3s ease;
+}
+
+.house:hover .houseNumber {
+  opacity: 0.25;
+  transform: scale(1.1);
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .content {
+    padding: 0 2rem;
+  }
+
+  .title {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .housesSection {
+    padding: 5rem 0;
+  }
+
+  .content {
+    padding: 0 1.5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .grid {
+    gap: 1.5rem;
+    grid-auto-rows: 280px;
+  }
+
+  .iconWrapper {
+    font-size: 4.5rem;
+  }
+
+  .houseName {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,226 @@
+.footerSection {
+  background: var(--obsidian);
+  color: var(--bone);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(225, 199, 160, 0.1);
+  padding: 0;
+}
+
+.gridSystem {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  min-height: 400px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* --- Area 1: The Brand / Manifesto (Large Left Block) --- */
+.brandArea {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  padding: 4rem;
+  border-right: 1px solid rgba(225, 199, 160, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.brandBigText {
+  font-family: var(--font-display);
+  font-size: 8rem;
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--theyyam-red);
+  opacity: 0.2;
+  margin-left: -0.5rem;
+  user-select: none;
+  transition: opacity 0.5s ease;
+}
+
+.brandArea:hover .brandBigText {
+  opacity: 0.4;
+}
+
+.quoteBox {
+  margin-top: auto;
+  max-width: 80%;
+}
+
+.quote {
+  font-family: var(--font-accent);
+  font-size: 1.5rem;
+  color: var(--sand-text);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.quoteAuthor {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--theyyam-orange);
+}
+
+/* --- Area 2: Info Columns (Top Right Blocks) --- */
+.infoBlock {
+  padding: 3rem;
+  border-bottom: 1px solid rgba(225, 199, 160, 0.1);
+  border-right: 1px solid rgba(225, 199, 160, 0.1); /* Separator between columns */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: background 0.3s ease;
+}
+
+.infoBlock:last-child {
+  border-right: none;
+}
+
+.infoBlock:hover {
+  background: rgba(225, 55, 37, 0.02);
+}
+
+.blockLabel {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--ember-gray);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.blockContent {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--bone);
+  line-height: 1.4;
+}
+
+.highlight {
+  color: var(--theyyam-gold);
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* --- Area 3: Action / Socials (Bottom Right Strip) --- */
+.actionStrip {
+  grid-column: 2 / 4;
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.socialIcon {
+  font-size: 1.5rem;
+  color: var(--ember-gray);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid rgba(225, 199, 160, 0.1);
+  border-radius: 50%;
+}
+
+.socialIcon:hover {
+  color: var(--theyyam-red);
+  border-color: var(--theyyam-red);
+  transform: translateY(-3px);
+}
+
+.copyright {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--ember-gray);
+  opacity: 1;
+  text-align: right;
+}
+
+.heart {
+  color: var(--theyyam-red);
+  display: inline-block;
+  animation: beat 1.5s infinite ease-in-out;
+}
+
+@keyframes beat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 1024px) {
+  .gridSystem {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .brandArea {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    border-right: none;
+    border-bottom: 1px solid rgba(225, 199, 160, 0.1);
+    padding: 3rem 2rem;
+  }
+
+  .brandBigText {
+    font-size: 6rem;
+  }
+
+  .actionStrip {
+    grid-column: 1 / 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .gridSystem {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brandArea,
+  .infoBlock,
+  .actionStrip {
+    width: 100%;
+    border-right: none;
+  }
+
+  .brandBigText {
+    font-size: 4rem;
+  }
+
+  .infoBlock {
+    padding: 2rem;
+  }
+
+  .actionStrip {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .copyright {
+    text-align: center;
+  }
+}

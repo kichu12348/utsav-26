@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import styles from "./Hero.module.css";
@@ -8,6 +8,18 @@ gsap.registerPlugin(useGSAP);
 function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const particlesRef = useRef<HTMLDivElement>(null);
+
+  // Generate particle data
+  const particles = useMemo(() => {
+    return Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      size: Math.random() * 4 + 2,
+      delay: Math.random() * 5,
+      duration: Math.random() * 3 + 4,
+    }));
+  }, []);
 
   useGSAP(
     () => {
@@ -72,6 +84,44 @@ function Hero() {
             delay: 0.2,
           });
       }
+
+      // Particles Animation - Float from bottom to top
+      const particleElements = particlesRef.current?.querySelectorAll(
+        `.${styles.particle}`
+      );
+      if (particleElements && particleElements.length > 0) {
+        particleElements.forEach((particle) => {
+          const delay = parseFloat(particle.getAttribute("data-delay") || "0");
+          const duration = parseFloat(
+            particle.getAttribute("data-duration") || "5"
+          );
+
+          gsap.fromTo(
+            particle,
+            {
+              y: 0,
+              opacity: 0,
+            },
+            {
+              y: -window.innerHeight * 1.2,
+              opacity: 1,
+              ease: "none",
+              duration: duration,
+              delay: delay,
+              repeat: -1,
+              repeatDelay: Math.random() * 2,
+              modifiers: {
+                opacity: (value) => {
+                  const progress = parseFloat(value);
+                  if (progress < 0.2) return progress * 5;
+                  if (progress > 0.7) return (1 - progress) * 3.33;
+                  return 1;
+                },
+              },
+            }
+          );
+        });
+      }
     },
     { scope: containerRef }
   );
@@ -83,6 +133,22 @@ function Hero() {
       <div className={styles.eyeLeft}></div>
       <div className={styles.eyeRight}></div>
       <div className={styles.overlay}></div>
+      <div className={styles.bottomBar}></div>
+      <div className={styles.particles} ref={particlesRef}>
+        {particles.map((p) => (
+          <div
+            key={p.id}
+            className={styles.particle}
+            data-delay={p.delay}
+            data-duration={p.duration}
+            style={{
+              left: `${p.left}%`,
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+            }}
+          />
+        ))}
+      </div>
       <div className={styles.content}>
         <h1 className={styles.title} ref={titleRef}>
           {text.split("").map((char, index) => (

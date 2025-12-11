@@ -1,0 +1,367 @@
+.scoreboardSection {
+  background: var(--obsidian);
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 0;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      90deg,
+      rgba(197, 55, 37, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(180deg, rgba(197, 55, 37, 0.08) 1px, transparent 1px);
+  background-size: 120px 120px;
+  opacity: 1;
+}
+
+.glowTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: radial-gradient(
+    ellipse 800px 200px at 50% 0%,
+    rgba(197, 55, 37, 0.08),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.glowBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: radial-gradient(
+    ellipse 800px 200px at 50% 100%,
+    rgba(197, 55, 37, 0.08),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 0 4rem;
+  max-width: 1600px;
+}
+
+.titleContainer {
+  margin-bottom: 4rem;
+  text-align: left;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--sand-text);
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  margin-bottom: 1rem;
+  text-shadow: none;
+}
+
+.titleLine {
+  width: 120px;
+  height: 2px;
+  margin: 0;
+  background: var(--theyyam-red);
+  transform-origin: left;
+  box-shadow: none;
+}
+
+.scoreboardGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.scoreboardItem {
+  position: relative;
+  background: transparent;
+  border: none;
+  border-top: 1px solid transparent;
+  padding: 2rem 0;
+  transition: all 0.3s ease;
+  overflow: visible;
+}
+
+.itemBg {
+  display: none;
+}
+
+.scoreboardItem::before {
+  display: none;
+}
+
+.scoreboardItem:hover {
+  transform: none;
+  border-top-color: var(--house-color);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.scoreboardItem:last-child:hover {
+  border-bottom-color: var(--house-color);
+}
+
+.leading {
+  border-top-color: rgba(197, 55, 37, 0.2);
+  background: transparent;
+}
+
+.leading:hover {
+  border-top-color: var(--theyyam-red);
+}
+
+.leading::after {
+  display: none;
+}
+
+.rank {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--ember-gray);
+  opacity: 0.3;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.itemContent {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+  z-index: 1;
+  padding-left: 3rem;
+}
+
+.houseInfo {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex: 1;
+}
+
+.iconWrapper {
+  font-size: 3rem;
+  color: var(--house-color);
+  filter: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+}
+
+.scoreboardItem:hover .iconWrapper {
+  transform: none;
+  filter: none;
+  opacity: 1;
+}
+
+.houseDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.houseName {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--sand-text);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin: 0;
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+
+.scoreboardItem:hover .houseName {
+  color: var(--house-color);
+  letter-spacing: 0.25em;
+}
+
+.houseLabel {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: var(--ember-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  opacity: 0.4;
+}
+
+.scoreContainer {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.score {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--house-color);
+  font-weight: 400;
+  line-height: 1;
+  text-shadow: none;
+  transition: all 0.3s ease;
+}
+
+.scoreboardItem:hover .score {
+  transform: none;
+  text-shadow: none;
+}
+
+.scoreLabel {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: var(--ember-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.3;
+  align-self: flex-end;
+  padding-bottom: 0.5rem;
+}
+
+.progressBar {
+  display: none;
+}
+
+.progressFill {
+  display: none;
+}
+
+.crownBadge {
+  position: static;
+  font-size: 1.2rem;
+  filter: none;
+  animation: none;
+  margin-left: 0.5rem;
+  opacity: 0.5;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .content {
+    padding: 0 2rem;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .scoreboardSection {
+    padding: 5rem 0;
+  }
+
+  .content {
+    padding: 0 1.5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    letter-spacing: 0.3em;
+  }
+
+  .titleLine {
+    width: 80px;
+  }
+
+  .scoreboardItem {
+    padding: 1.5rem 0;
+  }
+
+  .itemContent {
+    padding-left: 2.5rem;
+    gap: 2rem;
+  }
+
+  .rank {
+    font-size: 0.85rem;
+  }
+
+  .iconWrapper {
+    font-size: 2.5rem;
+  }
+
+  .houseName {
+    font-size: 1.5rem;
+  }
+
+  .score {
+    font-size: 2.5rem;
+  }
+
+  .scoreLabel {
+    font-size: 0.65rem;
+  }
+
+  .crownBadge {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+    letter-spacing: 0.2em;
+  }
+
+  .itemContent {
+    flex-direction: row;
+    padding-left: 2rem;
+    gap: 1rem;
+  }
+
+  .rank {
+    font-size: 0.75rem;
+  }
+
+  .houseInfo {
+    gap: 1rem;
+  }
+
+  .iconWrapper {
+    font-size: 2rem;
+  }
+
+  .houseName {
+    font-size: 1.2rem;
+    letter-spacing: 0.15em;
+  }
+
+  .houseLabel {
+    display: none;
+  }
+
+  .scoreContainer {
+    gap: 0.3rem;
+  }
+
+  .score {
+    font-size: 2rem;
+  }
+
+  .scoreLabel {
+    display: none;
+  }
+}

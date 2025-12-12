@@ -7,75 +7,78 @@ export default function Loader({ onDone }: { onDone?: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const eyesRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    const eyes = gsap.utils.toArray(`.${styles.eyeShape}`);
-    
-    const tl = gsap.timeline({
-      onComplete: () => onDone?.(),
-    });
+  useGSAP(
+    () => {
+      const eyes = gsap.utils.toArray(`.${styles.eyeShape}`);
 
-    // 1. Initial State
-    tl.set(eyesRef.current, { opacity: 1 });
-    tl.set(eyes, { 
-      scaleY: 0.02, // Almost closed slit
-      opacity: 0,
-      filter: "drop-shadow(0 0 0px var(--theyyam-red))"
-    });
+      const tl = gsap.timeline({
+        onComplete: () => onDone?.(),
+      });
 
-    // 2. Eyes "ignite" (fade in as glowing slits)
-    tl.to(eyes, {
-      opacity: 0.8,
-      duration: 1.2,
-      ease: "power2.in",
-      filter: "drop-shadow(0 0 15px var(--theyyam-red))"
-    });
+      // 1. Initial State
+      tl.set(eyesRef.current, { opacity: 1 });
+      tl.set(eyes, {
+        scaleY: 0.02, // Almost closed slit
+        opacity: 0,
+        filter: "drop-shadow(0 0 0px var(--theyyam-red))",
+      });
 
-    // 3. Eyes "flare" open (intensity up, scale up)
-    tl.to(eyes, {
-      scaleY: 1,
-      opacity: 1,
-      duration: 0.3,
-      ease: "back.out(1.4)", // Snap open with power
-      filter: "drop-shadow(0 0 40px var(--theyyam-red))"
-    });
+      // 2. Eyes "ignite" (fade in as glowing slits)
+      tl.to(eyes, {
+        opacity: 0.8,
+        duration: 1.2,
+        ease: "power2.in",
+        filter: "drop-shadow(0 0 40px var(--theyyam-red))",
+      });
 
-    // 4. Intense stare (pulse with glow)
-    tl.to(eyes, {
-      scale: 1.05,
-      filter: "drop-shadow(0 0 60px var(--theyyam-red))",
-      duration: 1.2,
-      yoyo: true,
-      repeat: 1,
-      ease: "sine.inOut"
-    });
+      tl.to(eyes, {
+        scaleY: 1,
+        opacity: 1,
+        duration: 0.3,
+        ease: "back.out(1.4)",
+      });
 
-    // 5. Fade out everything
-    tl.to(containerRef.current, {
-      opacity: 0,
-      duration: 0.6,
-      ease: "power2.inOut"
-    });
+      tl.to(eyes, {
+        filter: "drop-shadow(0 0 60px var(--theyyam-red))",
+        duration: 1.2,
+        yoyo: true,
+        repeat: 1,
+        ease: "sine.inOut",
+      });
 
-  }, { scope: containerRef });
+      // 5. Fade out everything
+      tl.to(containerRef.current, {
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.inOut",
+      });
+    },
+    { scope: containerRef }
+  );
 
   return (
     <div className={styles.loader} ref={containerRef}>
       <div className={styles.eyesContainer} ref={eyesRef}>
-        {/* Left Eye */}
-        <svg className={styles.eyeSvg} viewBox="0 0 100 60">
-           {/* Stylized Theyyam Eye Shape - Sharp Almond */}
-           <path 
-             className={styles.eyeShape} 
-             d="M0,30 Q50,-10 100,30 Q50,70 0,30 Z" 
-           />
+        {/* Left Eye - Sinister Scowl (Outer High, Inner Low) */}
+        <svg className={styles.eyeSvg} viewBox="0 0 100 70">
+          <path
+            className={styles.eyeShape}
+            d="M 10,25 
+               Q 50,15 90,45 
+               Q 50,80 10,25 
+               Z"
+          />
         </svg>
-        
-        {/* Right Eye */}
-        <svg className={styles.eyeSvg} viewBox="0 0 100 60">
-           <path 
-             className={styles.eyeShape} 
-             d="M0,30 Q50,-10 100,30 Q50,70 0,30 Z" 
-           />
+
+        {/* Right Eye - Sinister Scowl (Inner Low, Outer High) */}
+        <svg className={styles.eyeSvg} viewBox="0 0 100 70">
+          <path
+            className={styles.eyeShape}
+            d="M 10,45 
+               Q 50,15 90,25 
+               Q 50,80 10,45 
+               Z"
+          />
         </svg>
       </div>
     </div>

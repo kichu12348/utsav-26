@@ -23,9 +23,11 @@
 .eyeShape {
   fill: var(--theyyam-red);
   stroke: var(--theyyam-red);
-  stroke-width: 3px;
-  /* Start with a deep, ominous glow */
-  filter: drop-shadow(0 0 15px var(--theyyam-red));
+  stroke-width: 2px;
+  /* Fiery intense glow matching the reference */
+  filter: drop-shadow(0 0 5px #ff4500) /* Orange-red inner heat */
+    drop-shadow(0 0 15px var(--theyyam-red)) /* Main glow */
+    drop-shadow(0 0 30px rgba(139, 0, 0, 0.5)); /* Ambient gloom */
   transform-origin: center;
   vector-effect: non-scaling-stroke;
 }
